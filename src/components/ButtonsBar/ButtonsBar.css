@@ -1,0 +1,18 @@
+.button-bar button {
+  font-size: 2.5rem;
+  border: none;
+  border-radius: 5px;
+  padding: 1rem;
+  margin: 0 5px;
+  cursor: pointer;
+  background-color: rgb(223, 79, 79);
+}
+
+.button-bar button:disabled {
+  cursor: not-allowed;
+  background-color: rgba(224, 112, 112, 0.637);
+}
+
+.loop-status {
+    margin-left: 10px;
+}
