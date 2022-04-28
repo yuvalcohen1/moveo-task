@@ -26,6 +26,8 @@ function App() {
           <Audio audioColor="lightpink" src={song7} />
           <Audio audioColor="lightyellow" src={song8} />
           <Audio audioColor="darkgray" src={song9} />
+
+          <div className="time-line" style={{ left: 0, top: 0 }}></div>
         </div>
       </div>
 
