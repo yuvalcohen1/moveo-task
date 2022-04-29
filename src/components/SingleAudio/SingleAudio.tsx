@@ -11,7 +11,7 @@ interface SingleAudioProps {
 
 const SingleAudio: FC<SingleAudioProps> = ({ audioColor, src }) => {
   const { isPlaying } = useAppSelector(selectPlayer);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState<boolean>(false);
 
   const audioRef = useRef(new Audio(src));
 
@@ -23,6 +23,14 @@ const SingleAudio: FC<SingleAudioProps> = ({ audioColor, src }) => {
       audioRef.current.currentTime = 0;
     }
   }, [isPlaying]);
+
+  useEffect(() => {
+    if (isMuted) {
+      audioRef.current.muted = true;
+    } else {
+      audioRef.current.muted = false;
+    }
+  }, [isMuted]);
 
   return (
     <div className="audio-container">
