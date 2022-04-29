@@ -1,0 +1,19 @@
+.audio {
+  width: 100%;
+  height: 100%;
+}
+
+.audio-container {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.unmute-btn,
+.mute-btn {
+  border: none;
+  background: none;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
