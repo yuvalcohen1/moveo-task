@@ -10,7 +10,7 @@ interface SingleAudioProps {
 }
 
 const SingleAudio: FC<SingleAudioProps> = ({ audioColor, src }) => {
-  const { isPlaying } = useAppSelector(selectPlayer);
+  const { isPlaying, isLooping } = useAppSelector(selectPlayer);
   const [isMuted, setIsMuted] = useState<boolean>(false);
 
   const audioRef = useRef(new Audio(src));
@@ -31,6 +31,14 @@ const SingleAudio: FC<SingleAudioProps> = ({ audioColor, src }) => {
       audioRef.current.muted = false;
     }
   }, [isMuted]);
+
+  useEffect(() => {
+    if (isLooping) {
+      audioRef.current.loop = true;
+    } else {
+      audioRef.current.loop = false;
+    }
+  }, [isLooping]);
 
   return (
     <div className="audio-container">

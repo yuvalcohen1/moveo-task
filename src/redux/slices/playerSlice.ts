@@ -6,11 +6,13 @@ import { RootState } from "../store";
 interface PlayerState {
   tracks: TrackModel[];
   isPlaying: boolean;
+  isLooping: boolean;
 }
 
 const initialState: PlayerState = {
   tracks,
   isPlaying: false,
+  isLooping: false,
 };
 
 export const playerSlice = createSlice({
@@ -23,10 +25,16 @@ export const playerSlice = createSlice({
     stop(state) {
       state.isPlaying = false;
     },
+    activateLoop(state) {
+      state.isLooping = true;
+    },
+    deactivateLoop(state) {
+      state.isLooping = false;
+    },
   },
 });
 
-export const { play, stop } = playerSlice.actions;
+export const { play, stop, activateLoop, deactivateLoop } = playerSlice.actions;
 
 export const selectPlayer = (state: RootState) => state.player;
 
