@@ -7,12 +7,14 @@ interface PlayerState {
   tracks: TrackModel[];
   isPlaying: boolean;
   isLooping: boolean;
+  currentTime: number;
 }
 
 const initialState: PlayerState = {
   tracks,
   isPlaying: false,
   isLooping: false,
+  currentTime: 0,
 };
 
 export const playerSlice = createSlice({
@@ -24,6 +26,7 @@ export const playerSlice = createSlice({
     },
     stop(state) {
       state.isPlaying = false;
+      state.currentTime = 0;
     },
     activateLoop(state) {
       state.isLooping = true;
@@ -31,10 +34,23 @@ export const playerSlice = createSlice({
     deactivateLoop(state) {
       state.isLooping = false;
     },
+    raise1Sec(state) {
+      state.currentTime = state.currentTime + 1;
+    },
+    resetCurrentTime(state) {
+      state.currentTime = 0;
+    },
   },
 });
 
-export const { play, stop, activateLoop, deactivateLoop } = playerSlice.actions;
+export const {
+  play,
+  stop,
+  activateLoop,
+  deactivateLoop,
+  resetCurrentTime,
+  raise1Sec,
+} = playerSlice.actions;
 
 export const selectPlayer = (state: RootState) => state.player;
 

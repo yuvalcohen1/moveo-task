@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from "react";
+import React, { FC, useCallback, useEffect } from "react";
 import { FaPlay, FaStop } from "react-icons/fa";
 import { ImLoop } from "react-icons/im";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -6,6 +6,7 @@ import {
   activateLoop,
   deactivateLoop,
   play,
+  resetCurrentTime,
   selectPlayer,
   stop,
 } from "../../redux/slices/playerSlice";
@@ -14,9 +15,15 @@ import "./ButtonsBar.css";
 interface Props {}
 
 const ButtonsBar: FC<Props> = () => {
-  const { isPlaying, isLooping } = useAppSelector(selectPlayer);
+  const { isPlaying, isLooping, currentTime } = useAppSelector(selectPlayer);
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (currentTime === 17) {
+      dispatch(resetCurrentTime());
+    }
+  }, [currentTime]);
 
   const onPlay = useCallback(() => {
     dispatch(play());

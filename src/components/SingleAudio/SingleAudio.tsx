@@ -1,7 +1,7 @@
-import React, { FC, useCallback, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { GoMute, GoUnmute } from "react-icons/go";
-import { useAppSelector } from "../../redux/hooks";
-import { selectPlayer } from "../../redux/slices/playerSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { resetCurrentTime, selectPlayer } from "../../redux/slices/playerSlice";
 import "./SingleAudio.css";
 
 interface SingleAudioProps {
@@ -10,8 +10,11 @@ interface SingleAudioProps {
 }
 
 const SingleAudio: FC<SingleAudioProps> = ({ audioColor, src }) => {
-  const { isPlaying, isLooping } = useAppSelector(selectPlayer);
+  const { isPlaying, isLooping, currentTime } = useAppSelector(selectPlayer);
   const [isMuted, setIsMuted] = useState<boolean>(false);
+  const duration = 17;
+
+  const dispatch = useAppDispatch();
 
   const audioRef = useRef(new Audio(src));
 
@@ -33,12 +36,12 @@ const SingleAudio: FC<SingleAudioProps> = ({ audioColor, src }) => {
   }, [isMuted]);
 
   useEffect(() => {
-    if (isLooping) {
-      audioRef.current.loop = true;
-    } else {
-      audioRef.current.loop = false;
+    if (isLooping && currentTime === duration) {
+      audioRef.current.currentTime = 0;
+      dispatch(resetCurrentTime());
+      audioRef.current.play();
     }
-  }, [isLooping]);
+  }, [isLooping, currentTime]);
 
   return (
     <div className="audio-container">

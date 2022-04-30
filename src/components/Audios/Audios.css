@@ -1,12 +1,13 @@
-.time-line {
-  width: 1px;
-  height: 100%;
-  background-color: red;
-  position: absolute;
-}
-
 .audios {
   position: relative;
   width: 80%;
   height: 80%;
+}
+
+.audios .time-line {
+  width: 1px;
+  height: 100%;
+  background-color: red;
+  position: absolute;
+  top: 0;
 }
