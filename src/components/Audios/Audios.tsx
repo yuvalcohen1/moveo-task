@@ -20,22 +20,19 @@ const Audios: FC<Props> = () => {
 
   useEffect(() => {
     if (isPlaying && currentTime < duration) {
-      console.log(isPlaying);
-      console.log(currentTime);
-
       setTimeout(() => {
         dispatch(raise1Sec());
       }, 1000);
     } else {
       dispatch(resetCurrentTime());
     }
-  }, [isPlaying, currentTime]);
+  }, [isPlaying, currentTime, dispatch]);
 
   useEffect(() => {
     if (currentTime === duration && !isLooping) {
       dispatch(stop());
     }
-  }, [isLooping, currentTime]);
+  }, [isLooping, currentTime, dispatch]);
 
   return (
     <div className="audios">

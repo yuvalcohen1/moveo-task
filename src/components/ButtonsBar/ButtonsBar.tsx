@@ -23,15 +23,15 @@ const ButtonsBar: FC<Props> = () => {
     if (currentTime === 17) {
       dispatch(resetCurrentTime());
     }
-  }, [currentTime]);
+  }, [currentTime, dispatch]);
 
   const onPlay = useCallback(() => {
     dispatch(play());
-  }, []);
+  }, [dispatch]);
 
   const onStop = useCallback(() => {
     dispatch(stop());
-  }, []);
+  }, [dispatch]);
 
   const toggleLoop = useCallback(() => {
     if (isLooping) {
@@ -39,7 +39,7 @@ const ButtonsBar: FC<Props> = () => {
     } else {
       dispatch(activateLoop());
     }
-  }, [isLooping]);
+  }, [isLooping, dispatch]);
 
   return (
     <span className="button-bar">

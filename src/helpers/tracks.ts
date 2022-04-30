@@ -35,7 +35,7 @@ export const tracks: TrackModel[] = [
     src: song6,
   },
   {
-    color: "lightpink",
+    color: "brown",
     src: song7,
   },
   {

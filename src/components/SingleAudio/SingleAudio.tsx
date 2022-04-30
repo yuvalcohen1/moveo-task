@@ -41,7 +41,7 @@ const SingleAudio: FC<SingleAudioProps> = ({ audioColor, src }) => {
       dispatch(resetCurrentTime());
       audioRef.current.play();
     }
-  }, [isLooping, currentTime]);
+  }, [isLooping, currentTime, dispatch]);
 
   return (
     <div className="audio-container">

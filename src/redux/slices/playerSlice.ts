@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { tracks } from "../../helpers/tracks";
 import { TrackModel } from "../../models/Track.model";
 import { RootState } from "../store";
